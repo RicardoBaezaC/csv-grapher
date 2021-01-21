@@ -33,14 +33,11 @@ def formulario():
 
 @app.route('/upload', methods=['POST'])
 def uploader():
-
     if request.method == 'POST':
         # RECIBE DATOS Y GUARDA EL ARCHIVO
         f = request.files['filename']
-        base_path = os.path.abspath(os.path.dirname(__file__))
-        upload_path = os.path.join(base_path, app.config['UPLOAD_FOLDER'])
         filename = secure_filename(f.filename)
-        f.save(os.path.join(upload_path, filename))
+        f.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
         separador = request.form['separador']
         fil = 'archivos/'+f.filename
     # ABRE EL ARCHIVO
@@ -110,7 +107,6 @@ def graficar():
             print('Barras')
             img2 = None
             img2 = io.BytesIO()
-
             plt.bar(df[columnaX], df[columnaY], edgecolor='black')
             plt.xticks(df[columnaX], rotation=75)
             plt.xlabel(columnaX)
@@ -126,7 +122,6 @@ def graficar():
             print('Pastel')
             img3 = None
             img3 = io.BytesIO()
-
             normdata = colors.Normalize(min(df[columnaY]), max(df[columnaY]))
             colormap = cm.get_cmap("Blues")
             colores = colormap(normdata(df[columnaY]))
@@ -146,7 +141,6 @@ def uploader2():
 
     if request.method == 'POST':
         # RECIBE DATOS Y GUARDA EL ARCHIVO
-
         filename = request.form['filename']
         separador = request.form['sep']
     # ABRE EL ARCHIVO

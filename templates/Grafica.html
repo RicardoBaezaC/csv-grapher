@@ -1,0 +1,62 @@
+{% extends 'layout.html' %} {% block body %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+     <!--creamos la navbar que utilizaremos-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link " href="/">
+                        <h4>Inicio</h4>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        <h4>Resultado</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+</nav>
+<center>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <br><br><br>
+                <!-- Agregamos un h3 para el inicio de la pagina -->
+
+                <h3 class="text-center display-2">Gráfica</h3>
+                <div class="container ">
+
+                    <!--recibimos los argumentos(imagen) para desplegarla-->
+                    <img src="data:image/png;base64,{{imagen.imagen}}{{ argument }}" alt="Chania" />
+
+                </div>
+
+                <div>
+                    <!--Seguimos recibiendo los datos para abrir el archivo -->
+                    <form action="/upload2" method="POST" enctype="multipart/form-data">
+                        <div style="display: none">
+                            <input class='bg-dark text-white col-md-2 border-white' value="{{file}}" id="filename"
+                                name="filename" placeholder="fil" required />
+                            <input class='bg-dark text-white col-md-1' value="{{sep}}" id="sep" name="sep"
+                                placeholder="fil" required />
+                        </div>
+                        <br><br>
+                        <!--boton que nos regresara para realizar otra grafica -->
+                        <input class="btn btn-success btn-lg rounded-pill " type="submit" value="Graficar Otra" />
+                        <br><br>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</center>
+
+{% endblock %}

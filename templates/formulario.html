@@ -1,0 +1,210 @@
+{% extends 'layout.html' %} {% block body %}
+<!--creamos nuestra navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link " href="#">
+          <h4>Graficador</h4>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#s ">
+          <h4>Iniciar</h4>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#s1 ">
+          <h4>About</h4>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!--agregamos titulos-->
+
+<br><br><br>
+<div class="container ">
+  <div class="container p-3 my-3 bg-info text-white rounded-pill">
+    <h1 class="display-2 text-center">Graficador automático</h1>
+
+  </div>
+
+  <div class="container-sm col-md-6">
+    <div class="alert alert-success rounded-pill">
+      <div class=" text-center ">
+        <h4> Convierte tus archivos CSV en estupendas graficas </h4>
+      </div>
+    </div><br>
+  </div>
+  <!--agregamos imagenes para hacer mas atractiva para el usuario -->
+  <img class=" img-fluid" src="static/csv.png" alt="Chania" />
+  <img class=" img-fluid" src="static/lin.png" alt="Chania" />
+  <img class=" img-fluid" src="static/bar.png" alt="Chania" />
+  <img class=" img-fluid" src="static/pie.png" alt="Chania" />
+
+
+  <br>
+  <br><br>
+  <br><br id="s"><br><br><br>
+  <!--agregamos iconos con movimiento para hacer mas atractiva para el usuario -->
+  <h3 class="text-center display-4">Ingresa los datos requeridos</h3><br>
+  <div class="card container-sm mb-3 w-25 p-3 ">
+    <center>
+      <div class="spinner-grow text-muted"></div>
+      <div class="spinner-grow text-primary"></div>
+      <div class="spinner-grow text-success"></div>
+      <div class="spinner-grow text-info"></div>
+      <div class="spinner-grow text-warning"></div>
+      <div class="spinner-grow text-danger"></div>
+
+      <!--abrimos nuestro formulario para que el usuario ingrese los datos -->
+      <br><br>
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        <h4 class='text-muted '>Seleccionar Archivo:</h4><br>
+        <!--agregamos un file input para obtener el documentos de datos-->
+        <div class="custom-file ">
+          <input type="file" class="custom-file-input " id="customFile" name="filename" accept=".csv" required />
+          <label class="custom-file-label" for="customFile" align="left">Archivo </label>
+
+        </div>
+
+        <br><br>
+        <!--agregamos un combobox  para determinar los separadores -->
+        <h5 class='text-muted '>Seleccionar separador:</h5>
+        <div class="custom-file "></div>
+        <select class="selectpicker  " name="separador" data-style="  btn-outline-primary" data-width="auto">
+          <option value=';'>Punto y Coma</option>
+          <option value=','>Coma</option>
+        </select>
+
+        <br><br><br>
+        <!--boton que inicia con el proceso se enviar el fomulario -->
+        <input class="btn btn-success btn-lg rounded-pill" type="submit" value="Cargar" /> <br /> <br>
+      </form>
+    </center>
+  </div>
+</div>
+<script>
+  // el siguiente código se utiliza si se desea que el nombre del archivo aparezca al seleccionarlo
+  $(".custom-file-input").on("change", function () {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    $('.collapse').collapse()
+  });
+</script>
+<br><br>
+<!--agregamos la seccion de about -->
+<br id="s1"><br><br>
+<div class=" container">
+  <h1 class="display-2 text-center">About</h1>
+  <p class="text-justify">
+    Esta página esta realizada con la finalidad de optimizar el tiempo en el que se realiza una representación
+    gráfica de datos, la página consiste en que el usuario debe subir un archivo con extención csv y seleccionar
+    tipo de grafica que desea y la página realizara la tarea en segundos. A demás de que la página presenta una interfaz
+    gráfica
+    amigable y fácil de utilizar.
+    Este pequeño proyecto esta realizado con el lenguaje de programación
+    <span class="badge  badge-primary">Python</span> y las librelias
+    <span class="badge  badge-primary">Flask</span>,
+    <span class="badge  badge-primary">Pandas</span> y
+    <span class="badge  badge-primary">Matplotlib</span>.
+  </p>
+  <br><br>
+  <h1 class="display-4 text-center">Herramientas</h1>
+  <br>
+  <center>
+    <div class="card  mb-6 w-30 p-6">
+      <div id="accordion">
+        <div class="card  ">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne"
+                aria-expanded="false" aria-controls="collapseOne">
+                <h5>Python</h5>
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body text-justify">
+              Python es un lenguaje de programación interpretado cuya filosofía hace hincapié en la
+              legibilidad de su código.2​ Se trata de un lenguaje de programación multiparadigma, ya que
+              soporta orientación a objetos, programación imperativa y, en menor medida, programación
+              funcional. Es un lenguaje interpretado, dinámico y multiplataforma.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="false" aria-controls="collapseTwo">
+                <h5>Flask</h5>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body text-justify">
+              Flask es un framework minimalista escrito en Python que permite crear aplicaciones web
+              rápidamente y con un mínimo número de líneas de código. Está basado en la especificación
+              WSGI de Werkzeug y el motor de templates Jinja2 y tiene una licencia BSD.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                aria-expanded="false" aria-controls="collapseThree">
+                <h5>Matplotlib</h5>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body text-justify">
+              Matplotlib es una biblioteca para la generación de gráficos a partir de datos contenidos en
+              listas o arrays en el lenguaje de programación Python y su extensión matemática NumPy.
+              Proporciona una API, pylab, diseñada para recordar a la de MATLAB.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
+                aria-expanded="false" aria-controls="collapseFour">
+                <h5>Pandas</h5>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body text-justify">
+              Pandas es una herramienta de análisis y manipulación de datos de código abierto rápida, potente, flexible
+              y fácil de usar,
+              construida sobre el lenguaje de programación Python.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </center>
+  <br><br>
+
+  <script>
+
+    $('#BSbtnsuccess').filestyle({
+      buttonName: 'btn-success',
+      buttonText: ' Open'
+    });
+
+  </script>
+
+  {% endblock %}

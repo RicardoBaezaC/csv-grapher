@@ -1,0 +1,141 @@
+{% extends 'layout.html' %} {% block body %}
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link " href="/">
+                    <h4>Inicio</h4>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">
+                    <h4>Graficar</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <br><br><br>
+            <h3 class="text-center display-2">Datos</h3>
+            <h5 class="text-center text-muted">A continuación se muestran los primeros 10 datos de la tabla.</h5>
+            <br><br>
+            <!--tomamos los datos del dataframe y con un ciclo realizamo la tabla correspondiente -->
+            <table class="table table-striped  border-bottom text-center">
+                <thead class="bg-primary text-white">
+                    <tr>
+                        {% for col in title %}
+                        <th>{{col}}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tab in row_data %}
+
+                    <tr>
+                        {% for table in tab %}
+                        <td>{{ table }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+<br>
+<div class="container ">
+    <form action="/graficar" method="POST">
+        <div class="container">
+            <br><br>
+            <!--agregamos iconos con movimiento para hacer mas atractiva para el usuario -->
+            <h3 class="text-center display-4">Ingresa los datos requeridos</h3><br>
+            <div class="card container-sm mb-6 w-50 p-6 ">
+                <center><br>
+                    <div class="spinner-grow text-muted"></div>
+                    <div class="spinner-grow text-warning"></div>
+                    <div class="spinner-grow text-primary"></div>
+                    <div class="spinner-grow text-success"></div>
+                    <div class="spinner-grow text-info"></div>
+                    <div class="spinner-grow text-warning"></div>
+                    <div class="spinner-grow text-danger"></div>
+                    <div class="spinner-grow text-success"></div>
+                    <div class="spinner-grow text-info"></div>
+                    <div class="spinner-grow text-warning"></div>
+                    <div class="spinner-grow text-danger"></div>
+                    <div class="spinner-grow text-success"></div>
+                    <div class="container">
+                        <div style="display: none">
+                            <input value="{{file}}" id="fil" name="fil" placeholder="fil" required />
+                            <input value="{{sep}}" id="sep" name="sep" placeholder="fil" required />
+                        </div>
+                        <br><br>
+                        <h3>Seleccione tipo de Grafica</h3><br>
+                        <!--combobox para determinar el tipo de grafica -->
+                        <img src="static/tipo.gif" width="100" height="100"><br><br>
+                        <select class="selectpicker  " name="tipo" type='number' data-style="btn- btn-outline-info"
+                            data-width="auto">
+                            <option value='1'>Lineal</option>
+                            <option value='2'>Barras</option>
+                            <option value='3'>Pastel</option>
+                        </select>
+                        <br><br>
+                        <!--obtenemos los datos del dataframe para realizar combobox donde se seleccionan las columnas a graficar -->
+                        <h3>Seleccione columnas para graficar</h3><br>
+                        <h5 class=" text-muted">Eje X</h5> <br>
+                        <select class="selectpicker show-tick " name="columnaX" data-style="btn- btn-outline-primary"
+                            data-width="auto">
+
+                            {% for title in titles2 %}
+
+                            <option>{{title}}</option>
+                            {% endfor %}
+                        </select>
+                        <br><br>
+                        <h5 class=" text-muted">Eje Y</h5> <br>
+                        <select class="selectpicker show-tick" id="Y" name="columnaY"
+                            data-style="btn- btn-outline-primary" data-width="auto">
+
+                            {% for title in titles %}
+
+                            <option>{{title}}</option>
+                            {% endfor %}
+                        </select>
+                        <br><br>
+                        <h3>Ingrese el titulo para la grafica</h3> <br>
+
+                        <!--El usuario tiene la opcion de ponerle nombre al grafico mediante el siguiente input -->
+                        <input type="text" class="form-control col-md-6 text-center" id="nombre" name="nombre"
+                            placeholder="Ejemplo: Ventas anuales" />
+
+                        <br><br><br>
+                        <!--boton que llama al metodo para graficar -->
+                        <input class="btn btn-success btn-lg rounded-pill " type="submit" value="Graficar" /> <br>
+                    </div>
+                    <br><br>
+            </div>
+
+    </form>
+    </center>
+</div>
+</div>
+<br><br><br>
+
+
+
+{% endblock %}

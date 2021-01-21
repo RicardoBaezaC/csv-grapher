@@ -3,6 +3,7 @@ from matplotlib import cm, colors
 from flask import Flask, render_template, request
 import matplotlib.pyplot as plt
 from werkzeug.utils import secure_filename
+from matplotlib.figure import Figure
 import os
 import base64
 import io

@@ -45,15 +45,8 @@ def uploader():
         df2 = df.head(10)
         col = []
         col2 = []
-    # CICLO PARA SEPARAR LAS COLUMNAS NUMERICAS Y LAS TIPO OBJETO
-        for c in df.columns:
-            t = str(df[c].dtype)
-            if "int" in t or "float" in t:
-                col.append(c)
-            else:
-                col2.append(c)
     # RETORNA TITULOS,FILAS Y VARIABLES QUE NECESITAREMOS DESPUES AL MISMO TIEMPO QUE ABRE EL ARCHIVO FORMULARIO2.HTML
-        return render_template('formulario2.html',  row_data=list(df2.values.tolist()), title=df.columns.values, titles=col, titles2=col2, file=fil, sep=separador)
+        return render_template('formulario2.html',  row_data=list(df2.values.tolist()), title=df.columns.values, titles=df.columns, titles2=df.columns, file=fil, sep=separador)
 
 # METODO QUE RECIBE UN FORMULARIO PARA GRAFICAR
 
@@ -148,15 +141,8 @@ def uploader2():
         df2 = df.head(10)
         col = []
         col2 = []
-    # CICLO PARA SEPARAR LAS COLUMNAS NUMERICAS Y LAS TIPO OBJETO
-        for c in df.columns:
-            t = str(df[c].dtype)
-            if "int" in t or "float" in t:
-                col.append(c)
-            else:
-                col2.append(c)
     # RETORNA TITULOS,FILAS Y VARIABLES QUE NECESITAREMOS DESPUES AL MISMO TIEMPO QUE ABRE EL ARCHIVO FORMULARIO2.HTML
-        return render_template('formulario2.html',  row_data=list(df2.values.tolist()), title=df.columns.values, titles=col, titles2=col2, file=filename, sep=separador)
+        return render_template('formulario2.html',  row_data=list(df2.values.tolist()), title=df.columns.values, titles=df.columns, titles2=df.columns, file=filename, sep=separador)
 
 
 if __name__ == "__main__":
